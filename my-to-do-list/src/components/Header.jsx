@@ -1,7 +1,21 @@
-function Header() {
-  return <header>
-    <h1>To Do List</h1>
-  <button id="toggleBtn" >🌙</button>
-  </header>;
+function Header({darkMode,toggleTheme}) {
+  return (
+    <header className="header">
+
+      <div className="header-left">
+        <h1>📋 Todo List</h1>
+        <p>Organize your tasks efficiently</p>
+      </div>
+
+<button
+    className="theme-btn"
+    onClick={() => toggleTheme()}
+>
+    {darkMode ? "☀️" : "🌙"}
+</button>
+
+    </header>
+  );
 }
+
 export default Header;

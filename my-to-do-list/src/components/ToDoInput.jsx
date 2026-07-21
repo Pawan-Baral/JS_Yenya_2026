@@ -1,32 +1,37 @@
 import { useState } from "react";
 
-function ToDoInput({addTask}) {
-  const [input,setInput]=useState("");
-  return <div>
-    
-<form onSubmit={(event)=>{
-  event.preventDefault();
-  addTask(input);
-  setInput("");
-}}
->
-      <input type="text"
-     id="taskInput"
-      placeholder="Make task as small as possible"
-      value={input}
-       onChange={(event)=>{
-      setInput(event.target.value);
-    }}></input>
-</form>
-    <button id="addTaskButton"
-onClick={() => {
-  const text = input.trim();
+function ToDoInput({ addTask }) {
+  const [input, setInput] = useState("");
 
-  if (text !== "") {
-    addTask(text);
-    setInput("");
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const text = input.trim();
+
+    if (text !== "") {
+      addTask(text);
+      setInput("");
+    }
   }
-}}>+ Add Task</button>
-  </div>;
-}                                         
+
+  return (<>
+    <form className="todo-input" onSubmit={handleSubmit}>
+
+      <input
+        type="text"
+        placeholder="Make task as small as possible"
+        value={input}
+        onChange={(event) => setInput(event.target.value)}
+      />
+
+      <button type="submit">
+        + Add Task
+      </button>
+
+    </form>
+    
+    </>
+  );
+}
+
 export default ToDoInput;

@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { FaEdit, FaTrash, FaSave } from "react-icons/fa";
 
 function ToDoItem({ task, deleteTask, toggleCompleted, editTask}) {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(task.text);
 
   return (
-    <div>
+    <div className="todo-item">
       <input
         type="checkbox"
         checked={task.completed}
@@ -19,26 +20,24 @@ function ToDoItem({ task, deleteTask, toggleCompleted, editTask}) {
           onChange={(event) => setEditText(event.target.value)}
         />
       ) : (
-        <span
-          style={{
-            color: task.completed ? "green" : "whitesmoke",
-            textDecoration: task.completed ? "line-through" : "none",
-            opacity: task.completed ? 0.6 : 1,
-          }}
-        >
-          {task.text}
-        </span>
+<span
+  className={task.completed ? "completed task-text" : "task-text"}
+>
+  {task.text}
+</span>
       )}
 
       {isEditing ? (
-        <button onClick={()=>{editTask(task.id,editText);
-           setIsEditing(false);}}>Save</button>
+        <button className="save-btn" onClick={()=>{editTask(task.id,editText);
+           setIsEditing(false);}}><FaSave /></button>
       ) : (
-        <button onClick={() =>{ setIsEditing(true) }}>Edit</button>
+        <button className="edit-btn" onClick={() =>{ setIsEditing(true) }}>
+          <FaEdit />
+        </button>
       )}
 
-      <button onClick={() => deleteTask(task.id)}>
-        Delete
+      <button className="delete-btn" onClick={() => deleteTask(task.id)}>
+        <FaTrash />
       </button>
     </div>
   );
