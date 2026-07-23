@@ -1,0 +1,66 @@
+.hero-carousel {
+    width: 100%;
+}
+
+.hero-slide {
+    position: relative;
+    width: 100%;
+    height: 550px;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0,0,0,.55);
+
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    width: 600px;
+    margin-left: 80px;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.hero-rating {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.hero-overview {
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.hero-button {
+    text-decoration: none;
+
+    background: crimson;
+    color: white;
+
+    padding: 12px 25px;
+
+    border-radius: 5px;
+}
+
+.hero-button:hover {
+    background: rgb(175,0,35);
+}
+.hero-genres {
+    color: white;
+    font-size: 18px;
+    margin: 15px 0;
+}
