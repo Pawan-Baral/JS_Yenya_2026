@@ -25,7 +25,8 @@ A modern Todo List application built with **React + Vite** to practice React fun
 
 ## 📸 Preview
 
-<img width="800" alt="Todo App Screenshot" src="YOUR_SCREENSHOT_HERE">
+<img width="800" alt="Todo App Screenshot" src="JS_Yenya_2026/my-to-do-list/public
+/screenshot.png">
 
 ## 🚀 Getting Started
 
