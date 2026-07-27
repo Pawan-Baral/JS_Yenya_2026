@@ -25,6 +25,7 @@ function HeroSlider({ movies, genreMap }) {
           <CarouselItem key={movie.id}>
             <div className="hero-slide">
               <img
+                className="hero-image"
                 src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                 alt={movie.title}
               />
@@ -39,8 +40,8 @@ function HeroSlider({ movies, genreMap }) {
                   </p>
 
                   <p className="hero-rating">Rating: {movie.vote_average}</p>
-                  <p className="hero-overview">{movie.overview}</p>
-                  <Link to={`/movie/${movie.id}`} className="hero-button">
+
+                  <Link to={`/movies/${movie.id}`} className="hero-button">
                     View Details
                   </Link>
                 </div>

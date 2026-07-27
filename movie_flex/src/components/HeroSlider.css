@@ -18,15 +18,27 @@
     position: absolute;
     inset: 0;
 
-    background: rgba(0,0,0,.55);
-
     display: flex;
+    justify-content: center;
     align-items: center;
+
+    background:
+        linear-gradient(rgba(0, 0, 0, .55),
+            rgba(0, 0, 0, .45),
+            rgba(0, 0, 0, .65));
+
+    text-align: center;
 }
 
 .hero-content {
-    width: 600px;
-    margin-left: 80px;
+    width: min(800px, 90%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 22px;
+
     color: white;
 }
 
@@ -36,8 +48,8 @@
 }
 
 .hero-rating {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
 }
 
 .hero-overview {
@@ -46,21 +58,51 @@
 }
 
 .hero-button {
-    text-decoration: none;
+    display: inline-block;
+    margin-top: 45px;
 
-    background: crimson;
+    padding: 14px 34px;
+
+    background: #e50914;
     color: white;
 
-    padding: 12px 25px;
+    text-decoration: none;
 
-    border-radius: 5px;
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    transition: .3s;
 }
 
 .hero-button:hover {
-    background: rgb(175,0,35);
+    background: rgb(175, 0, 35);
 }
+
 .hero-genres {
     color: white;
-    font-size: 18px;
+    font-size: 1.2rem;
     margin: 15px 0;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-carousel {
+
+    width: 100%;
+
+    margin-top: 0;
+}
+
+.hero-slide {
+
+    width: 100%;
+
+    height: calc(100vh - 80px);
+
+    position: relative;
 }

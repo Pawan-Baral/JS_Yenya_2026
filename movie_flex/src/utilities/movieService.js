@@ -1,7 +1,12 @@
 import tmdb from "../services/tmdb";
 
-export async function getPopularMovies() {
-    const response = await tmdb.get("/movie/popular");
+export async function getPopularMovies(page = 1) {
+    const response = await tmdb.get("/movie/popular", {
+        params: {
+            page,
+        },
+
+    })
     return response.data.results;
 }
 

@@ -32,10 +32,10 @@ function Home() {
     }, []);
     return (
         <>
-            <div>Welcome to Homes of Movies</div>
+
             <HeroSlider movies={movies} genreMap={genreMap} />
             <div className="movies-grid">
-                {movies.slice(0, 8).map((movie) => (
+                {movies.slice(0, 11).map((movie) => (
                     <MovieCard key={movie.id} movie={movie} />
                 ))}
             </div>
