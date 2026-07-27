@@ -34,10 +34,13 @@ function Home() {
         <>
             <div>Welcome to Homes of Movies</div>
             <HeroSlider movies={movies} genreMap={genreMap} />
-            {movies.map((movie) => (
-                <MovieCard key={movie.id} movie={movie} />
-            ))}
-        </>);
+            <div className="movies-grid">
+                {movies.slice(0, 8).map((movie) => (
+                    <MovieCard key={movie.id} movie={movie} />
+                ))}
+            </div>
+        </>
+    );
 }
 
 
