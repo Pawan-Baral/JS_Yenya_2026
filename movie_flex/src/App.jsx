@@ -6,6 +6,7 @@ import Movies from './pages/Movies'
 import Contact from './pages/Contact'
 import { Routes, Route } from 'react-router-dom'
 import MovieDetails from './pages/MovieDetails'
+import EmployeeForm from './pages/EmployeeForm'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
         <Route path="/contact" element={<div><Contact /></div>} />
         <Route path="/movies/:id" element={<MovieDetails />} />
+        <Route path="/employeeRegistration" element={<EmployeeForm />} />
       </Routes>
 
       <Footer />

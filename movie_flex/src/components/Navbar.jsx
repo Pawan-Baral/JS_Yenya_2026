@@ -19,6 +19,7 @@ function Navbar() {
           <Link to="/movies">Movies</Link>
 
           <Link to="/contact">Contact</Link>
+          <Link to="/employeeRegistration">Employee Form</Link>
 
         </nav>
 

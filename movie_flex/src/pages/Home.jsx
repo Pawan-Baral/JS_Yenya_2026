@@ -35,7 +35,7 @@ function Home() {
 
             <HeroSlider movies={movies} genreMap={genreMap} />
             <div className="movies-grid">
-                {movies.slice(0, 11).map((movie) => (
+                {movies.slice(0, 12).map((movie) => (
                     <MovieCard key={movie.id} movie={movie} />
                 ))}
             </div>

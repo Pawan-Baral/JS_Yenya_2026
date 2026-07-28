@@ -1,0 +1,203 @@
+.employee-container {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #0f172a;
+
+    padding: 50px 20px;
+}
+
+.employee-card {
+
+    width: 100%;
+
+    max-width: 850px;
+
+    background: #1e293b;
+
+    border-radius: 12px;
+
+    padding: 40px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .35);
+}
+
+.employee-card h1 {
+
+    color: white;
+
+    text-align: center;
+
+    margin-bottom: 10px;
+}
+
+.subtitle {
+
+    text-align: center;
+
+    color: #cbd5e1;
+
+    margin-bottom: 35px;
+}
+
+.employee-form {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+}
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.form-group label {
+
+    color: white;
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    background: #334155;
+
+    color: white;
+}
+
+.form-group textarea {
+
+    resize: vertical;
+}
+
+.radio-group,
+.checkbox-group {
+
+    display: flex;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+    color: white;
+}
+
+.radio-group label,
+.checkbox-group label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-weight: 400;
+}
+
+.terms {
+
+    grid-column: 1/3;
+
+    color: white;
+}
+
+.submit-btn {
+
+    grid-column: 1/3;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #dc2626;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.submit-btn:hover {
+
+    background: #b91c1c;
+}
+
+@media(max-width:768px) {
+
+    .employee-form {
+
+        grid-template-columns: 1fr;
+    }
+
+    .submit-btn,
+    .terms {
+
+        grid-column: 1;
+    }
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    background: white;
+    color: #111827;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.terms input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #dc2626;
+    cursor: pointer;
+}
+
+.terms span {
+    color: #ef4444;
+    font-size: 14px;
+    margin-left: 28px;
+    /* aligns under the text instead of the checkbox */
+}
