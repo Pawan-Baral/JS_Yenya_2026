@@ -201,3 +201,9 @@
     margin-left: 28px;
     /* aligns under the text instead of the checkbox */
 }
+
+
+
+.employee-card h1 {
+    margin-bottom: 30px;
+}

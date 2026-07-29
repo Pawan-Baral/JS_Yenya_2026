@@ -1,180 +1,111 @@
+import * as Yup from "yup";
 
-
-export const initialEmployee = {
-    fullName: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
-    gender: "",
-    skills: [],
-    country: "",
-    dob: "",
-    profileImage: null,
-    about: "",
-    terms: false,
-};
-
-
-export function handleChange(e, setEmployee) {
-
-    const { name, value, type, checked, files } = e.target;
-
-    setEmployee(prev => ({
-        ...prev,
-
-        [name]:
-            type === "checkbox"
-                ? checked
-                : type === "file"
-                    ? files[0]
-                    : value,
-
-    }));
-
-}
-
-
-export function handleSkillChange(e, setEmployee) {
-
-    const { value, checked } = e.target;
-
-    if (checked) {
-
-        setEmployee(prev => ({
-            ...prev,
-            skills: [...prev.skills, value],
-        }));
-
-    } else {
-
-        setEmployee(prev => ({
-            ...prev,
-            skills: prev.skills.filter(skill => skill !== value),
-        }));
-
-    }
-
-}
-
-
-export function resetForm(setEmployee, setErrors) {
-
-    setEmployee(initialEmployee);
-
-    setErrors({});
-
-}
-
-// ----------------------------
-//Validation
-// ----------------------------
-export function validateEmployee(employee) {
-
-    const errors = {};
+const employeeSchema = Yup.object({
 
     // Full Name
-    if (!employee.fullName.trim()) {
-        errors.fullName = "Full Name is required.";
-    }
+    fullName: Yup.string()
+        .trim()
+        .required("Full Name is required")
+        .min(3, "Full Name must be at least 3 characters"),
 
     // Email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    email: Yup.string()
+        .trim()
+        .email("Invalid Email Address")
+        .required("Email is required"),
 
-    if (!employee.email.trim()) {
-
-        errors.email = "Email is required.";
-
-    } else if (!emailRegex.test(employee.email)) {
-
-        errors.email = "Invalid Email.";
-
-    }
-
-    // Phone
-    const phoneRegex = /^(\+?977)?9[678]\d{8}$/;
-
-    if (!employee.phone.trim()) {
-
-        errors.phone = "Phone Number is required.";
-
-    } else if (!phoneRegex.test(employee.phone)) {
-
-        errors.phone = "Invalid Phone Number.";
-
-    }
+    // Phone Number (Nepal)
+    phone: Yup.string()
+        .matches(
+            /^(\+?977)?9[678]\d{8}$/,
+            "Invalid Phone Number"
+        )
+        .required("Phone Number is required"),
 
     // Password
-    if (!employee.password) {
-
-        errors.password = "Password is required.";
-
-    } else if (employee.password.length < 8) {
-
-        errors.password = "Minimum 8 characters required.";
-
-    }
+    password: Yup.string()
+        .required("Password is required")
+        .min(8, "Password must be at least 8 characters")
+        .matches(
+            /[A-Z]/,
+            "Password must contain at least one uppercase letter"
+        )
+        .matches(
+            /[a-z]/,
+            "Password must contain at least one lowercase letter"
+        )
+        .matches(
+            /[0-9]/,
+            "Password must contain at least one number"
+        )
+        .matches(
+            /[@$!%*?&]/,
+            "Password must contain one special character"
+        ),
 
     // Confirm Password
-    if (!employee.confirmPassword) {
-
-        errors.confirmPassword = "Confirm Password required.";
-
-    } else if (employee.password !== employee.confirmPassword) {
-
-        errors.confirmPassword = "Passwords do not match.";
-
-    }
+    confirmPassword: Yup.string()
+        .required("Confirm Password is required")
+        .oneOf(
+            [Yup.ref("password")],
+            "Passwords do not match"
+        ),
 
     // Gender
-    if (!employee.gender) {
-
-        errors.gender = "Select Gender.";
-
-    }
+    gender: Yup.string()
+        .required("Please select a gender"),
 
     // Skills
-    if (employee.skills.length === 0) {
-
-        errors.skills = "Select at least one skill.";
-
-    }
+    skills: Yup.array()
+        .min(1, "Select at least one skill"),
 
     // Country
-    if (!employee.country) {
-
-        errors.country = "Select Country.";
-
-    }
+    country: Yup.string()
+        .required("Please select a country"),
 
     // Date of Birth
-    if (!employee.dob) {
-
-        errors.dob = "Select Date of Birth.";
-
-    }
+    dob: Yup.date()
+        .max(new Date(), "Date cannot be in the future")
+        .required("Date of Birth is required"),
 
     // Profile Image
-    if (!employee.profileImage) {
+    profileImage: Yup.mixed()
+        .required("Please upload a profile image")
+        .test(
+            "fileSize",
+            "Image size should be less than 2 MB",
+            (value) => {
+                if (!value) return false;
+                return value.size <= 2 * 1024 * 1024;
+            }
+        )
+        .test(
+            "fileType",
+            "Only JPG, JPEG and PNG images are allowed",
+            (value) => {
+                if (!value) return false;
 
-        errors.profileImage = "Upload Profile Image.";
+                return [
+                    "image/jpeg",
+                    "image/jpg",
+                    "image/png",
+                ].includes(value.type);
+            }
+        ),
 
-    }
+    // About Yourself
+    about: Yup.string()
+        .trim()
+        .required("About Yourself is required")
+        .min(20, "Please write at least 20 characters"),
 
-    // About
-    if (!employee.about.trim()) {
+    // Terms & Conditions
+    terms: Yup.boolean()
+        .oneOf(
+            [true],
+            "You must accept the Terms & Conditions"
+        )
 
-        errors.about = "About Yourself is required.";
+});
 
-    }
-
-    // Terms
-    if (!employee.terms) {
-
-        errors.terms = "Accept Terms & Conditions.";
-
-    }
-
-    return errors;
-
-}
+export default employeeSchema;
